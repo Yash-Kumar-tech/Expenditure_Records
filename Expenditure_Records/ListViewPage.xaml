@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="Expenditure_Records.ListViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expenditure_Records"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Transparent">
+    <Page.Resources>
+        <ToolTip Tag="HomeListView" x:Key="DescriptionToolTip"/>
+    </Page.Resources>
+    <Grid>
+        <ListView Grid.Row="1" HorizontalAlignment="Stretch" Loaded="HomeListView_Loaded"
+                  Background="{ThemeResource LayerFillColorDefaultBrush}"
+                  BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                  Padding="16,32,16,8" x:Name="HomeListView" CornerRadius="8,8,8,8">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Padding="12" Background="{ThemeResource SystemBaseLowColor}" CornerRadius="8,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Date" HorizontalAlignment="Center" FontSize="20" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="20" Text="Time" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="20" Text="Purpose" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="3" HorizontalAlignment="Center" FontSize="20" Text="Amount" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" FontSize="20" Text="Mode of Payment" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="5" HorizontalAlignment="Center" FontSize="20" Text="Paid/Received" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:MainPage">
+                    <Grid Background="{ThemeResource CardStrokeColorDefaultBrush}" CornerRadius="8,8,8,8" 
+                          HorizontalAlignment="Stretch">
+                        <muxc:Expander IsExpanded="False" ExpandDirection="Down" HorizontalAlignment="Stretch">
+                            <muxc:Expander.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind date}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                    <TextBlock Grid.Column="1" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind time}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                    <TextBlock Grid.Column="2" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind purpose}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                    <TextBlock Grid.Column="3" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind amount}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                    <TextBlock Grid.Column="4" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind mode}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                    <TextBlock Grid.Column="5" FontSize="20" HorizontalTextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind pr}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Padding="2,2,2,2"/>
+                                </Grid>
+                            </muxc:Expander.Header>
+                            <muxc:Expander.Content>
+                                <TextBlock Text="{x:Bind description}"/>
+                            </muxc:Expander.Content>
+                        </muxc:Expander>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

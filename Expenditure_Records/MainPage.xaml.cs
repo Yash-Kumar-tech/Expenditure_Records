@@ -38,7 +38,7 @@ namespace Expenditure_Records
 
         private void AddTransactionButton_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(BlankPage1));
+            ContentFrame.Navigate(typeof(AddPage));
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {

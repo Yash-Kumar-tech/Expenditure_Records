@@ -9,31 +9,85 @@
     mc:Ignorable="d"
     Background="Transparent">
     <Page.Resources>
-        <ToolTip Tag="HomeListView" x:Key="DescriptionToolTip"/>
+        <Style TargetType="ListView" x:Key="FixedHeaderListViewStyle">
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="TabNavigation" Value="Once" />
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True" />
+            <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
+            <Setter Property="UseSystemFocusVisuals" Value="True" />
+            <Setter Property="ItemContainerTransitions">
+                <Setter.Value>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <ContentThemeTransition />
+                        <ReorderThemeTransition />
+                        <EntranceThemeTransition IsStaggeringEnabled="False" />
+                    </TransitionCollection>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <ContentControl Content="{TemplateBinding Header}"
+                                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                ContentTransitions="{TemplateBinding HeaderTransitions}"
+                                                HorizontalContentAlignment="Stretch"/>
+                                <ScrollViewer x:Name="ScrollViewer"
+                                          Grid.Row="1"
+                                        IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                        BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}">
+                                    <ItemsPresenter 
+                                                Footer="{TemplateBinding Footer}"
+                                                FooterTemplate="{TemplateBinding FooterTemplate}"
+                                                FooterTransitions="{TemplateBinding FooterTransitions}"
+                                                Padding="{TemplateBinding Padding}" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     <Grid>
         <ListView Grid.Row="1" HorizontalAlignment="Stretch" Loaded="HomeListView_Loaded"
                   Background="{ThemeResource LayerFillColorDefaultBrush}"
                   BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                  Padding="16,32,16,8" x:Name="HomeListView" CornerRadius="8,8,8,8">
+                  Style="{StaticResource FixedHeaderListViewStyle}"
+                  x:Name="HomeListView" CornerRadius="8,8,8,8">
             <ListView.HeaderTemplate>
                 <DataTemplate>
-                    <Grid Padding="12" Background="{ThemeResource SystemBaseLowColor}" CornerRadius="8,8,8,8">
+                    <Grid Padding="12,12,12,12" Margin="12,0,12,0" Background="{ThemeResource SystemBaseLowColor}" CornerRadius="8,8,8,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="175"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Date" HorizontalAlignment="Center" FontSize="20" Style="{ThemeResource CaptionTextBlockStyle}"/>
                         <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="20" Text="Time" Style="{ThemeResource CaptionTextBlockStyle}"/>
                         <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="20" Text="Purpose" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                        <TextBlock Grid.Column="3" HorizontalAlignment="Center" FontSize="20" Text="Amount" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" FontSize="20" Text="Mode of Payment" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                        <TextBlock Grid.Column="5" HorizontalAlignment="Center" FontSize="20" Text="Paid/Received" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="3" HorizontalAlignment="Right" FontSize="20" Text="Amount" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="4" HorizontalAlignment="Right" FontSize="20" Text="Mode of Payment" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Grid.Column="5" HorizontalAlignment="Right" FontSize="20" Text="Paid/Received" Style="{ThemeResource CaptionTextBlockStyle}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.HeaderTemplate>
@@ -48,7 +102,7 @@
                                         <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="300"/>
-                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="200"/>
                                         <ColumnDefinition Width="150"/>
                                     </Grid.ColumnDefinitions>

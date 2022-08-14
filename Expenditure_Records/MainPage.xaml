@@ -13,11 +13,10 @@
     </Page.Resources>
     <Grid Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <Button Name="HomeButton" Click="HomeButton_Click" Grid.Row="0" VerticalAlignment="Top"
+        <Button Name="HomeButton" Click="HomeButton_Click" Grid.Row="0" VerticalAlignment="Center"
                         Background="{ThemeResource SystemAccentColor}" RequestedTheme="Light"
                         HorizontalAlignment="Left" CornerRadius="6,6,6,6" Margin="8,5,0,0">
             <StackPanel Orientation="Horizontal">
@@ -26,15 +25,13 @@
             </StackPanel>
         </Button>
         <Button x:Name="AddTransactionButton" Click="AddTransactionButton_Click" Grid.Row="0"
-                Background="{ThemeResource SystemAccentColor}" RequestedTheme="Light"
+                Background="{ThemeResource SystemAccentColor}" RequestedTheme="Light" VerticalAlignment="Center"
                 HorizontalAlignment="Right" CornerRadius="8,8,8,8" Margin="0,5,8,0">
             <StackPanel Orientation="Horizontal">
                 <SymbolIcon Symbol="Add" Margin="4,4,4,4"/>
                 <TextBlock Text="Add Transaction" Margin="4,4,4,4"/>
             </StackPanel>
         </Button>
-        <Grid Grid.Row="1">
-            <Frame x:Name="ContentFrame" MaxHeight="750"/>
-        </Grid>
+        <Frame x:Name="ContentFrame" Margin="16,16,16,16" Grid.Row="1"/>
     </Grid>
 </Page>

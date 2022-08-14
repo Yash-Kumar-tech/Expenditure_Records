@@ -26,7 +26,6 @@ namespace Expenditure_Records
     public sealed partial class ListViewPage : Page
     {
         public string date, time, purpose, amount, mode, pr, description;
-        
 
         public ObservableCollection<MainPage> records = new ObservableCollection<MainPage>();
         public ListViewPage()

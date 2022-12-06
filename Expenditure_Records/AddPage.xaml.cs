@@ -68,7 +68,7 @@ namespace Expenditure_Records
                 if (day[1] == '/')
                 {
                     day = "0" + day[0].ToString();
-                    year = dt.Substring(6, 4);
+                    year = dt.Substring(5, 4);
                 } else
                 {
                     year = dt.Substring(7, 4);

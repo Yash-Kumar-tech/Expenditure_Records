@@ -27,7 +27,7 @@ namespace Expenditure_Records
     {
         public string date, time, purpose, amount, mode, pr, description;
 
-        public ObservableCollection<MainPage> records = new ObservableCollection<MainPage>();
+        public ObservableCollection<Record> records = new ObservableCollection<Record>();
         public ListViewPage()
         {
             this.InitializeComponent();
@@ -37,8 +37,10 @@ namespace Expenditure_Records
         {
             StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             StorageFile storageFile;
-            ContentDialog cd = new ContentDialog();
-            cd.CloseButtonText = "Close";
+            ContentDialog cd = new ContentDialog()
+            {
+                CloseButtonText = "Close",
+            };
             try
             {
                 storageFile = await storageFolder.GetFileAsync("Data.csv");
@@ -57,6 +59,8 @@ namespace Expenditure_Records
             string[] data_in_line;
             foreach (string line in lines)
             {
+                //In the data.csv file, each line consists of the data for every transaction in the following format:
+                //date,time,purpose,paid/received,amount,mode_of_payment,description
                 if (line == "") break;
                 data_in_line = line.Split(',');
                 date = data_in_line[0];
@@ -67,16 +71,7 @@ namespace Expenditure_Records
                 description = data_in_line[6];
                 pr = data_in_line[3];
                 if (description.Trim() == "") description = "No description.";
-                records.Add(new MainPage()
-                {
-                    date = date,
-                    time = time,
-                    purpose = purpose,
-                    amount = amount,
-                    mode = mode,
-                    pr = pr,
-                    description = "Description: " + description,
-                });
+                records.Add(new Record(date, time, purpose, amount, mode, pr, "Description: " + description));
             }
             HomeListView.ItemsSource = records;
         }

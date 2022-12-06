@@ -24,6 +24,14 @@
                 <TextBlock Text="Home" Margin="4,4,4,4"/>
             </StackPanel>
         </Button>
+        <Button x:Name="ClearHistoryButton" Click="ClearHistoryButton_Click" Grid.Row="0"
+                Background="{ThemeResource SystemAccentColor}" RequestedTheme="Light" VerticalAlignment="Center"
+                HorizontalAlignment="Center" CornerRadius="8" Margin="0,5,8,0">
+            <StackPanel Orientation="Horizontal">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE894;" Margin="4"/>
+                <TextBlock Text="Clear History" Margin="4"/>
+            </StackPanel>
+        </Button>
         <Button x:Name="AddTransactionButton" Click="AddTransactionButton_Click" Grid.Row="0"
                 Background="{ThemeResource SystemAccentColor}" RequestedTheme="Light" VerticalAlignment="Center"
                 HorizontalAlignment="Right" CornerRadius="8,8,8,8" Margin="0,5,8,0">

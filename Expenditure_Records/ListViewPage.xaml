@@ -92,7 +92,7 @@
                 </DataTemplate>
             </ListView.HeaderTemplate>
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:MainPage">
+                <DataTemplate x:DataType="local:Record">
                     <Grid Background="{ThemeResource CardStrokeColorDefaultBrush}" CornerRadius="8,8,8,8" 
                           HorizontalAlignment="Stretch">
                         <muxc:Expander IsExpanded="False" ExpandDirection="Down" HorizontalAlignment="Stretch">

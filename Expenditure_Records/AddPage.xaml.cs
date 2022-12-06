@@ -137,7 +137,7 @@ namespace Expenditure_Records
             string pr = "";
             if (PRInput.SelectedIndex == 0) pr = "Paid";
             else pr = "Received";
-            to_save = $"\n{date},{time},{PurposeInput.Text},{pr},{AmountInput.Text},{ModeInput.Text},{Description.Text}";
+            to_save = $"{date},{time},{PurposeInput.Text},{pr},{AmountInput.Text},{ModeInput.Text},{Description.Text}\n";
             StorageFolder storage = Windows.Storage.ApplicationData.Current.LocalFolder;
             StorageFile file_to_write;
             try
@@ -154,9 +154,9 @@ namespace Expenditure_Records
             ContentDialog cd = new ContentDialog()
             {
                 Title = "Save successful",
-                Content = "Following details have been saved successfully:\nDate:" + date
-                + "\nTime: " + time + "\nPurpose: " + PurposeInput.Text + "\nMode of payment: " +
-                ModeInput.Text + "\nDescription: " + Description.Text,
+                Content = "Following details have been saved successfully:\nDate : " + date
+                + "\nTime : " + time + "\nPurpose : " + PurposeInput.Text + "\nMode of payment : " +
+                ModeInput.Text + "\nDescription : " + Description.Text,
                 CloseButtonText = "Close",
 
             };

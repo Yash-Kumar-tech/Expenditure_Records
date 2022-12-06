@@ -66,6 +66,7 @@ namespace Expenditure_Records
                     StorageFile storageFile = await storageFolder.GetFileAsync("Data.csv");
                     await storageFile.DeleteAsync();
                     await storageFolder.CreateFileAsync("Data.csv");
+                    ContentFrame.Navigate(typeof(ListViewPage));
                     ContentDialog cleared = new ContentDialog()
                     {
                         Title = "History Cleared",
